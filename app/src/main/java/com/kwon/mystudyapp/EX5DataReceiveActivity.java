@@ -1,0 +1,46 @@
+package com.kwon.mystudyapp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class EX5DataReceiveActivity extends AppCompatActivity {
+    TextView tvId, tvHp, tvIdStatic, tvHpStatic;
+    Button btnGet;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_data_receive);
+
+
+
+        tvId = (TextView) findViewById(R.id.tvId);
+        tvHp = (TextView) findViewById(R.id.tvHp);
+        tvIdStatic = (TextView) findViewById(R.id.tvIdStatic);
+        tvHpStatic = (TextView) findViewById(R.id.tvHpStatic);
+        btnGet = (Button)findViewById(R.id.btnGet);
+
+        //전달받은 데이타 받기
+        Intent getData = getIntent();
+        String id = getData.getStringExtra("id");
+        String hp = getData.getStringExtra("hp");
+        tvId.setText(id);
+        tvHp.setText(hp);
+
+
+        //onCreate()메서드 안해서 단독형으로 클릭이벤트처리
+        btnGet.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                tvIdStatic.setText(EX5DataActivity.id);
+                tvHpStatic.setText(EX5DataActivity.hp);
+            }
+        });
+    }
+    
+}
